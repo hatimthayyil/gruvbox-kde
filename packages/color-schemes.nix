@@ -5,14 +5,6 @@
   gruvbox-plus-kde,
 }:
 let
-  light = bg0: {
-    "251,241,193" = bg0;
-    "251,241,199" = bg0;
-    "235,219,178" = bg0;
-    "213,196,161" = "235,219,178";
-    "60,54,54" = "60,56,54";
-  };
-
   variants = {
     GruvboxDark = {
       name = "Gruvbox Dark";
@@ -27,12 +19,12 @@ let
     GruvboxLight = {
       name = "Gruvbox Light";
       upstream = "GruvboxPlusLight";
-      remap = light "251,241,199";
+      remap = { };
     };
     GruvboxLightHard = {
       name = "Gruvbox Light Hard";
       upstream = "GruvboxPlusLight";
-      remap = light "249,245,215";
+      remap."251,241,199" = "249,245,215";
     };
   };
 

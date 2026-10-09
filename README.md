@@ -17,11 +17,7 @@ Normal colours use the gruvbox neutral palette. Intense colours use bright on da
 
 ## KDE colour schemes
 
-Built from the `GruvboxPlusDark` and `GruvboxPlusLight` schemes of [Gruvbox Plus KDE](https://github.com/SylEleuth/gruvbox-plus-kde), fetched as a flake input. `packages/color-schemes.nix` rewrites their colours per variant:
-
-- Dark: upstream uses `bg0` for windows and views. Hard replaces it with `bg0_h`.
-- Light: upstream uses `bg1` for windows and views and `bg2` for alternates. Both move one step lighter, so windows use `bg0` (`bg0_h` for hard) and match the Konsole background.
-- Two off-palette upstream values snap to the palette: `251,241,193` to `bg0` and `60,54,54` to `fg1`.
+Built from the `GruvboxPlusDark` and `GruvboxPlusLight` schemes of [Gruvbox Plus KDE](https://github.com/SylEleuth/gruvbox-plus-kde), fetched as a flake input. `packages/color-schemes.nix` keeps upstream colours. The hard variants only replace `bg0` with `bg0_h`.
 
 For icons, [Gruvbox Plus Icon Pack](https://github.com/SylEleuth/gruvbox-plus-icon-pack) (`gruvbox-plus-icons` in nixpkgs) fits. Use `Gruvbox-Plus-Dark` with either polarity: its symbolic icons follow the colour scheme.
 
