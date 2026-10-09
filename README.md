@@ -9,7 +9,7 @@
 | `GruvboxLightHard` | `bg0_h` `#f9f5d7` |
 | `GruvboxLight` | `bg0` `#fbf1c7` |
 
-Each name exists as a Konsole scheme (`share/konsole/*.colorscheme`) and a KDE colour scheme (`share/color-schemes/*.colors`).
+Each name exists as a Konsole scheme (`konsole/*.colorscheme`) and a KDE colour scheme (`share/color-schemes/*.colors` in the `default` package).
 
 ## Konsole
 
@@ -23,20 +23,26 @@ For icons, [Gruvbox Plus Icon Pack](https://github.com/SylEleuth/gruvbox-plus-ic
 
 ## Install
 
-With Nix:
+With home-manager and [plasma-manager](https://github.com/nix-community/plasma-manager):
 
 ```nix
 inputs.gruvbox-kde.url = "github:hatimthayyil/gruvbox-kde";
 
-home.packages = [ inputs.gruvbox-kde.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+imports = [ inputs.gruvbox-kde.homeModules.default ];
+
+gruvbox-kde = {
+  contrast = "hard"; # or "standard"
+  konsole.enable = true; # profiles "Gruvbox Light" and "Gruvbox Dark", following the system light/dark setting
+  plasma.enable = true; # KDE colour scheme and Gruvbox-Plus-Dark icons
+};
 ```
 
-Packages: `konsole`, `color-schemes`, and `default` with both. `overlays.default` adds `pkgs.gruvbox-kde`. Plasma and Konsole find the files through `XDG_DATA_DIRS`.
+The `default` package holds the KDE colour schemes alone.
 
-Without Nix, copy `konsole/*.colorscheme` to `~/.local/share/konsole/`. The KDE colour schemes are generated, so build them with `nix build .#color-schemes`.
+Without Nix, copy `konsole/*.colorscheme` to `~/.local/share/konsole/`. The KDE colour schemes are generated, so build them with `nix build`.
 
 ## Licence
 
 This repository is [CC0 1.0](LICENSE). The gruvbox palette is from morhetz/gruvbox (MIT).
 
-The KDE colour schemes are derived from Gruvbox Plus KDE and are GPL-3.0. This repository contains none of its files: the build fetches them, and the `color-schemes` package carries the GPL-3.0 licence.
+The KDE colour schemes are derived from Gruvbox Plus KDE and are GPL-3.0. This repository contains none of its files: the build fetches them, and the `default` package carries the GPL-3.0 licence.

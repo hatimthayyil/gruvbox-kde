@@ -20,37 +20,14 @@
       forAllSystems = lib.genAttrs lib.systems.flakeExposed;
     in
     {
-      packages = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-          konsole = pkgs.callPackage ./packages/konsole.nix { };
-          color-schemes = pkgs.callPackage ./packages/color-schemes.nix { inherit gruvbox-plus-kde; };
-        in
-        {
-          inherit konsole color-schemes;
-          default = pkgs.symlinkJoin {
-            pname = "gruvbox-kde";
-            version = "0.2.0";
-            paths = [
-              konsole
-              color-schemes
-            ];
-            meta = {
-              description = "Gruvbox colour schemes for KDE Plasma and Konsole";
-              license = [
-                lib.licenses.cc0
-                lib.licenses.gpl3Only
-              ];
-              platforms = lib.platforms.all;
-            };
-          };
-        }
-      );
+      packages = forAllSystems (system: rec {
+        color-schemes = nixpkgs.legacyPackages.${system}.callPackage ./packages/color-schemes.nix {
+          inherit gruvbox-plus-kde;
+        };
+        default = color-schemes;
+      });
 
-      overlays.default = final: _prev: {
-        gruvbox-kde = self.packages.${final.stdenv.hostPlatform.system}.default;
-      };
+      homeModules.default = import ./modules/home-manager.nix self;
 
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
     };
