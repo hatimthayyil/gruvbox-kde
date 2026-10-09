@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "gruvbox-plus-kde": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763582294,
+        "narHash": "sha256-WKJX6ozVPqQ1RB30dPtuDkQLsHUq66TDZFsWqEI7lII=",
+        "owner": "SylEleuth",
+        "repo": "gruvbox-plus-kde",
+        "rev": "883452c4252ac3f2a3c3fb2fd3c7f48ae2eaecbb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SylEleuth",
+        "repo": "gruvbox-plus-kde",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1791456040,
@@ -18,6 +34,7 @@
     },
     "root": {
       "inputs": {
+        "gruvbox-plus-kde": "gruvbox-plus-kde",
         "nixpkgs": "nixpkgs"
       }
     }
